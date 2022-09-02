@@ -9,397 +9,405 @@
 </head>
 <body>
     <main id="main-doc">
-        <nav id="navbar">
-            <header>
-                <h1>Python Documentation</h1>
-            </header>
-            <a href="#Introduction" class="nav-link">Introduction</a>
-            <a href="#Control_Flow_Tools" class="nav-link">Control Flow Tools</a>
-            <a href="#Data_Structures" class="nav-link">Data Structures</a>
-            <a href="#Modules" class="nav-link">Modules</a>
-            <a href="#Input_and_Output" class="nav-link">Input and Output</a>
-            <a href="#Errors_and_Exceptions" class="nav-link">Errors and Exceptions</a>
-            <a href="#Classes" class="nav-link">Classes</a>
-            <a href="#Reference" class="nav-link">Reference</a>
-        </nav>
-
-        <section id="Introduction" class="main-section">
-            <header>
-                <h2>Introduction</h2>
-            </header>
-            <article>
-            <p>Python is an easy to learn, powerful programming language. It has efficient high-level data 
-                structures and a simple but effective approach to object-oriented programming. Python's 
-                elegant syntax and dynamic typing, together with its interpreted nature, make it an ideal 
-                language for scripting and rapid application development in many areas on most platforms.</p>
-            <p>Python enables programs to be written compactly and readably. Programs written in Python are 
-                typically much shorter than equivalent C, C++, or Java programs, for several reasons:</p>
-                
-            <ul>
-                <li>the high-level data types allow you to express complex operations in a single statement;</li>
-                <li>statement grouping is done by indentation instead of beginning and ending brackets;</li>
-                <li>no variable or argument declarations are necessary.</li>
-            </ul>
-            <p>
-                By the way, the language is named after the BBC show “Monty Python's Flying Circus” and has nothing 
-                to do with reptiles. Making references to Monty Python skits in documentation is not only allowed, it is encouraged!
-            </p>
-            </article>            
-        </section>
-        <section id="Control_Flow_Tools" class="main-section">
-            <header>
-                <h2>Control Flow Tools</h2>
-            </header>
-            <article>
-                <div>
-                <h3><code>if</code> Statements</h3>
-                <p>Perhaps the most well-known statement type is the if statement. For example:</p>
-                <code>
-                    >>> x = int(input("Please enter an integer: ")) <br>
-                    Please enter an integer: 42<br>
-                    >>> if x &lt; 0: <br>
-                    ...     x = 0 <br>
-                    ...     print('Negative changed to zero')<br>
-                    ... elif x == 0: <br>
-                    ...     print('Zero') <br>
-                    ... elif x == 1: <br>
-                    ...     print('Single') <br>
-                    ... else: <br>
-                    ...     print('More') <br>
-                    ... <br>
-                    More
-                </code>
-                <p>There can be zero or more elif parts, and the else part is optional. 
-                    The keyword 'elif' is short for 'else if', and is useful to avoid excessive indentation.</p>
-                </div>
-                <div>
-                    <h3><code>for</code> Statements</h3>
-                    <p>The for statement in Python differs a bit from what you may be used to in C or Pascal. Rather 
-                        than always iterating over an arithmetic progression of numbers (like in Pascal), or giving 
-                        the user the ability to define both the iteration step and halting condition (as C), Python's 
-                        for statement iterates over the items of any sequence (a list or a string), in the order that 
-                        they appear in the sequence. For example (no pun intended):</p>
-                    <code>
-                        >>> # Measure some strings: <br>
-                        ... words = ['cat', 'window', 'defenestrate'] <br> 
-                        >>> for w in words: <br>
-                        ...     print(w, len(w)) <br>
-                        ... <br>
-                        cat 3 <br>
-                        window 6 <br>
-                        defenestrate 12
-                    </code>
-                </div>
-                <div>
-                    <h3>The <code>range()</code> Function</h3>
-                    <p>If you do need to iterate over a sequence of numbers, the built-in function range() comes in handy. 
-                        It generates arithmetic progressions:</p>
-                    <code>
-                        >>> for i in range(5): <br>
-                        ...     print(i) <br>  
-                        ... <br>
-                        0 <br>  
-                        1 <br>  
-                        2 <br>  
-                        3 <br>  
-                        4 <br>  
-                    </code>
-                    <p>The given end point is never part of the generated sequence; range(10) generates 10 values, the legal 
-                        indices for items of a sequence of length 10.</p>
-                </div>
-                <div>
-                    <h3><code>pass</code> Statements</h3>
-                    <p>The <code>pass</code> statement does nothing. It can be used when a statement is required syntactically but the program 
-                        requires no action. For example:</p>
-                    <code>
-                        >>> while True: <br>
-                        ...     pass  # Busy-wait for keyboard interrupt (Ctrl+C) <br>
-                        ... 
-                    </code>
-                    <p>This is commonly used for creating minimal classes:</p>
-                    <code>
-                        >>> class MyEmptyClass: <br>
-                        ...     pass <br>
-                        ... 
-                    </code>
-                </div>
-                <div>
-                    <h3><code>match</code> Statements</h3>
-                    <p>A <code>match</code> statement takes an expression and compares its value to successive patterns given as one or more case 
-                        blocks. This is superficially similar to a switch statement in C, Java or JavaScript (and many other languages), 
-                        but it's more similar to pattern matching in languages like Rust or Haskell. Only the first pattern that matches 
-                        gets executed and it can also extract components (sequence elements or object attributes) from the value into variables.</p>
-                    <p>The simplest form compares a subject value against one or more literals:</p>
-                    <code>
-                        def http_error(status): <br>
-                        match status: <br>
-                            case 400: <br>
-                                return "Bad request" <br>
-                            case 404: <br>
-                                return "Not found" <br>
-                            case 418: <br>
-                                return "I'm a teapot" <br>
-                            case _: <br>
-                                return "Something's wrong with the internet" 
-                    </code>
-                    <p>Note the last block: the “variable name” _ acts as a wildcard and never fails to match. If no case matches, none of the branches 
-                        is executed.</p>
-                    <p>You can combine several literals in a single pattern using | (“or”):</p>
-                    <code>
-                        case 401 | 403 | 404: <br>
-                            return "Not allowed"
-                    </code>
-                </div>
-            </article>
-        </section>
-        <section id="Data_Structures" class="main-section">
-            <header>
-                <h2>Data Structures</h2>
-                <p>This chapter describes some things you've learned about already in more detail, and adds some new things as well.</p>
-            </header>
-            <article>
-                <div>
-                    <h3>Lists</h3>
-                    <p>The list data type has some more methods. Here are all of the methods of list objects:</p>
+        <div class="flex-container">
+            <div class="sidebar">
+                <nav id="navbar">
+                    <header>
+                        <h1>Python Documentation</h1>
+                    </header>
                     <ul>
-                        <li>
-                            <code>list.<b>append</b>(x)</code>
-                                <p>Add an item to the end of the list. Equivalent to <code>a[len(a):] = [x]</code>.</p>
-                        </li>
-                        <li>
-                            <code>list.<b>extend</b>(iterable)</code>
-                                <p>Extend the list by appending all the items from the iterable. Equivalent to <code>a[len(a):] = iterable</code>.</p>
-                        </li>
-                        <li>
-                            <code>list.<b>insert</b>(i, x)</code>
-                                <p>Insert an item at a given position. The first argument is the index of the element before which to insert, 
-                                    so <code>a.insert(0, x)</code> inserts at the front of the list, and <code>a.insert(len(a), x)</code> is equivalent to <code>a.append(x)</code>.</p>
-                        </li>
-                        <li>
-                            <code>list.<b>remove</b>(x)</code>
-                                <p>Remove the first item from the list whose value is equal to x. It raises a ValueError if there is no such item.</p>
-                        </li>
-                        <li>
-                            <code>list.<b>pop</b>([i])</code>
-                                <p>Remove the item at the given position in the list, and return it. If no index is specified, <code>a.pop()</code> removes and returns the last item in the list.</p>
-                        </li>
-                        <li>
-                            <code>list.<b>clear</b>()</code>
-                                <p>emove all items from the list. Equivalent to <code>del a[:]</code>.</p>
-                        </li>
-                        <li>
-                            <code>list.<b>index</b>(x[, start[, end]])</code>
-                                <p>Return zero-based index in the list of the first item whose value is equal to x. Raises a ValueError if there is no such item.</p>
-                        </li>
-                        <li>
-                            <code>list.<b>count</b>(x)</code>
-                                <p>Return the number of times x appears in the list.</p>
-                        </li>
-                        <li>
-                            <code>list.<b>sort</b>(*, key=None, reverse=False)</code>
-                                <p>Sort the items of the list in place.</p>
-                        </li>
-                        <li>
-                            <code>list.<b>reverse</b>()</code>
-                                <p>Reverse the elements of the list in place.</p>
-                        </li>
-                        <li>
-                            <code>list.<b>copy</b>()</code>
-                                <p>Return a shallow copy of the list. Equivalent to <code>a[:]</code>.</p>
-                        </li>
+                        <li><a href="#Introduction" class="nav-link">Introduction</a></li>
+                        <li><a href="#Control_Flow_Tools" class="nav-link">Control Flow Tools</a></li>
+                        <li><a href="#Data_Structures" class="nav-link">Data Structures</a></li>
+                        <li><a href="#Modules" class="nav-link">Modules</a></li>
+                        <li><a href="#Input_and_Output" class="nav-link">Input and Output</a></li>
+                        <li><a href="#Errors_and_Exceptions" class="nav-link">Errors and Exceptions</a></li>
+                        <li><a href="#Classes" class="nav-link">Classes</a></li>
+                        <li><a href="#Reference" class="nav-link">Reference</a></li>
                     </ul>
-                </div>
-                <div>
-                    <p>An example that uses most of the list methods:</p>
-                    <code>>>> fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana'] <br>
-                        >>> fruits.count('apple') <br>
-                        2 <br>
-                        >>> fruits.count('tangerine') <br>
-                        0 <br>
-                        >>> fruits.index('banana') <br>
-                        3 <br>
-                        >>> fruits.index('banana', 4)  # Find next banana starting a position 4 <br>
-                        6 <br>
-                        >>> fruits.reverse() <br>
-                        >>> fruits <br>
-                        ['banana', 'apple', 'kiwi', 'banana', 'pear', 'apple', 'orange'] <br>
-                        >>> fruits.append('grape') <br>
-                        >>> fruits <br>
-                        ['banana', 'apple', 'kiwi', 'banana', 'pear', 'apple', 'orange', 'grape'] <br>
-                        >>> fruits.sort() <br>
-                        >>> fruits <br>
-                        ['apple', 'apple', 'banana', 'banana', 'grape', 'kiwi', 'orange', 'pear'] <br>
-                        >>> fruits.pop() <br>
-                        'pear'</code>
-                </div>
-            </article>            
-        </section>
-        <section id="Modules" class="main-section">
-            <header>
-                <h2>Modules</h2>
-            </header>
-            <article>
-                <div>
-                    <p>If you quit from the Python interpreter and enter it again, the definitions you have made (functions and variables) are lost. Therefore, if you want to write a somewhat longer program, you are better off using a text editor to prepare the input for the interpreter and running it with that file as input instead. This is known as creating a script. As your program gets longer, you may want to split it into several files for easier maintenance. You may also want to use a handy function that you've written in several programs without copying its definition into each program.</p>
-                    <p>To support this, Python has a way to put definitions in a file and use them in a script or in an interactive instance of the interpreter. Such a file is called a module; definitions from a module can be imported into other modules or into the main module (the collection of variables that you have access to in a script executed at the top level and in calculator mode).</p>
-                    <p>A module is a file containing Python definitions and statements. The file name is the module name with the suffix .py appended. Within a module, the module’s name (as a string) is available as the value of the global variable __name__. For instance, use your favorite text editor to create a file called fibo.py in the current directory with the following contents:</p>
-                    <code>
-                        # Fibonacci numbers module <br>
-
-                        def fib(n):    # write Fibonacci series up to n <br>
-                            a, b = 0, 1 <br>
-                            while a &lt; n: <br>
-                                print(a, end=' ') <br>
-                                a, b = b, a+b <br>
-                            print() <br>
-
-                        def fib2(n):   # return Fibonacci series up to n <br>
-                            result = [] <br>
-                            a, b = 0, 1 <br>
-                            while a &lt; n: <br>
-                                result.append(a) <br>
-                                a, b = b, a+b <br>
-                            return result
-                    </code>
-                    <p>Now enter the Python interpreter and import this module with the following command:</p>
-                    <code>>>> import fibo</code>
-                    <p>This does not add the names of the functions defined in fibo directly to the current namespace (see Python Scopes and Namespaces for more details); it only adds the module name fibo there. Using the module name you can access the functions:</p>
-                    <code>
-                        >>> fibo.fib(1000) <br>
-                        0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 <br>
-                        >>> fibo.fib2(100) <br>
-                        [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89] <br>
-                        >>> fibo.__name__ <br>
-                        'fibo'
-                    </code>
-                    <p>If you intend to use a function often you can assign it to a local name:</p>
-                    <code>
-                        >>> fib = fibo.fib <br>
-                        >>> fib(500) <br>
-                        0 1 1 2 3 5 8 13 21 34 55 89 144 233 377
-                    </code>
-                </div>
-            </article>
-        </section>
-        <section id="Input_and_Output" class="main-section">
-            <header>
-                <h2>Input and Output</h2>
-                <p>There are several ways to present the output of a program; data can be printed in a human-readable form, or written to a file for future use. This chapter will discuss some of the possibilities.</p>
-            </header>
-            <article>
-                <div>
-                    <h3>Fancier Output Formatting</h3>
-                    <p>So far we've encountered two ways of writing values: <i>expression statements</i> and the <code>print()</code> function.</p>
-                    <p>Often you'll want more control over the formatting of your output than simply printing space-separated values. There are several ways to format output.</p>
+                </nav>
+            </div>
+    
+            <div class="sections">
+                <section id="Introduction" class="main-section">
+                    <header>
+                        <h2>Introduction</h2>
+                    </header>
+                    <article>
+                    <p>Python is an easy to learn, powerful programming language. It has efficient high-level data 
+                        structures and a simple but effective approach to object-oriented programming. Python's 
+                        elegant syntax and dynamic typing, together with its interpreted nature, make it an ideal 
+                        language for scripting and rapid application development in many areas on most platforms.</p>
+                    <p>Python enables programs to be written compactly and readably. Programs written in Python are 
+                        typically much shorter than equivalent C, C++, or Java programs, for several reasons:</p>
+        
                     <ul>
-                        <li>
-                            <p>To use formatted string literals, begin a string with f or F before the opening quotation mark or triple quotation mark. Inside this string, you can write a Python expression between { and } characters that can refer to variables or literal values.</p>
-                            <code>
-                                >>> year = 2016 <br>
-                                >>> event = 'Referendum' <br>
-                                >>> f'Results of the {year} {event}' <br>
-                                'Results of the 2016 Referendum'
-                            </code>
-                        </li>
-                        <li>
-                            <p>The <code>str.format()</code> method of strings requires more manual effort. You'll still use { and } to mark where a variable will be substituted and can provide detailed formatting directives, but you'll also need to provide the information to be formatted.</p>
-                            <code>
-                                >>> yes_votes = 42_572_654 <br>
-                                >>> no_votes = 43_132_495 <br>
-                                >>> percentage = yes_votes / (yes_votes + no_votes) <br>
-                                >>> '{:-9} YES votes  {:2.2%}'.format(yes_votes, percentage) <br>
-                                ' 42572654 YES votes  49.67%'
-                            </code>
-                        </li>
-                        <li>
-                            Finally, you can do all the string handling yourself by using string slicing and concatenation operations to create any layout you can imagine. The string type has some methods that perform useful operations for padding strings to a given column width.
-                        </li>
+                        <li>the high-level data types allow you to express complex operations in a single statement;</li>
+                        <li>statement grouping is done by indentation instead of beginning and ending brackets;</li>
+                        <li>no variable or argument declarations are necessary.</li>
                     </ul>
-                </div>
-            </article>
-        </section>
-        <section id="Errors_and_Exceptions" class="main-section">
-            <header>
-                <h2>Errors and Exceptions</h2>
-                <p>Until now error messages haven't been more than mentioned, but if you have tried out the examples you have probably seen some. There are (at least) two distinguishable kinds of errors: <i>syntax errors</i> and <i>exceptions</i>.</p>
-            </header>
-            <article>
-                <div>
-                    <h3>Syntax Errors</h3>
-                    <p>Syntax errors, also known as parsing errors, are perhaps the most common kind of complaint you get while you are still learning Python:</p>
-                    <code>
-                        >>> while True print('Hello world') <br>
-                        File "<stdin>", line 1 <br>
-                            while True print('Hello world') <br>
-                                        ^ <br>
-                        SyntaxError: invalid syntax
-                    </code>
-                    <p>The parser repeats the offending line and displays a little 'arrow' pointing at the earliest point in the line where the error was detected. The error is caused by (or at least detected at) the token preceding the arrow: in the example, the error is detected at the function <code>print()</code>, since a colon (':') is missing before it. File name and line number are printed so you know where to look in case the input came from a script.</p>
-                </div>
-                <div>
-                    <h3>Exceptions</h3>
-                    <p>Even if a statement or expression is syntactically correct, it may cause an error when an attempt is made to execute it. Errors detected during execution are called <i>exceptions</i> and are not unconditionally fatal: you will soon learn how to handle them in Python programs. Most exceptions are not handled by programs, however, and result in error messages as shown here:</p>
-                    <code>
-                        >>> 10 * (1/0) <br>
-                        Traceback (most recent call last): <br>
-                        File "<stdin>", line 1, in <module> <br>
-                        ZeroDivisionError: division by zero <br>
-                        >>> 4 + spam*3 <br>
-                        Traceback (most recent call last): <br>
-                        File "<stdin>", line 1, in <module> <br>
-                        NameError: name 'spam' is not defined <br>
-                        >>> '2' + 2 <br>
-                        Traceback (most recent call last): <br>
-                        File "<stdin>", line 1, in <module> <br>
-                        TypeError: can only concatenate str (not "int") to str
-                    </code>
-                    <p>The last line of the error message indicates what happened. Exceptions come in different types, and the type is printed as part of the message: the types in the example are ZeroDivisionError, NameError and TypeError. The string printed as the exception type is the name of the built-in exception that occurred. This is true for all built-in exceptions, but need not be true for user-defined exceptions (although it is a useful convention). Standard exception names are built-in identifiers (not reserved keywords).</p>
-                    <p>The rest of the line provides detail based on the type of exception and what caused it.</p>
-                    <p>The preceding part of the error message shows the context where the exception occurred, in the form of a stack traceback. In general it contains a stack traceback listing source lines; however, it will not display lines read from standard input.</p>
-                </div>
-            </article>
-        </section>
-        <section id="Classes" class="main-section">
-            <header>
-                <h2>Classes</h2>
-            </header>
-            <article>
-                <div>
                     <p>
-                        Classes provide a means of bundling data and functionality together. Creating a new class creates a new type of object, allowing new instances of that type to be made. Each class instance can have attributes attached to it for maintaining its state. Class instances can also have methods (defined by its class) for modifying its state.
+                        By the way, the language is named after the BBC show “Monty Python's Flying Circus” and has nothing 
+                        to do with reptiles. Making references to Monty Python skits in documentation is not only allowed, it is encouraged!
                     </p>
-                </div>
-                <div>
-                    <h3>A First Look at Classes</h3>
-                    <p>Classes introduce a little bit of new syntax, three new object types, and some new semantics.</p>
-                    <h4>Class Definition Syntax</h4>
-                    <p>The simplest form of class definition looks like this:</p>
-                    <code>
-                        class ClassName: <br>
-                        &lt;statement-1&gt; <br>
-                        . <br>
-                        . <br>
-                        . <br>
-                        &lt;statement-N&gt;
-                    </code>
-                    <p>Class definitions, like function definitions (def statements) must be executed before they have any effect. (You could conceivably place a class definition in a branch of an if statement, or inside a function.)</p>
-                    <p>n practice, the statements inside a class definition will usually be function definitions, but other statements are allowed, and sometimes useful — we'll come back to this later. The function definitions inside a class normally have a peculiar form of argument list, dictated by the calling conventions for methods — again, this is explained later.</p>
-                    <p>When a class definition is entered, a new namespace is created, and used as the local scope — thus, all assignments to local variables go into this new namespace. In particular, function definitions bind the name of the new function here.</p>
-                </div>
-            </article>
-        </section>
-        <section id="Reference" class="main-section">
-            <header>
-                <h2>Reference</h2>
-            </header>
-            <article>
-                <ul>
-                    <li>
-                        All the documentation in this page is taken from <a href="https://docs.python.org/3/" target="_blank">docs.python.org</a>
-                    </li>
-                </ul>
-            </article>
-        </section>
+                    </article>            
+                </section>
+                <section id="Control_Flow_Tools" class="main-section">
+                    <header>
+                        <h2>Control Flow Tools</h2>
+                    </header>
+                    <article>
+                        <div>
+                        <h3><code>if</code> Statements</h3>
+                        <p>Perhaps the most well-known statement type is the if statement. For example:</p>
+                        <code>
+                            >>> x = int(input("Please enter an integer: ")) <br>
+                            Please enter an integer: 42<br>
+                            >>> if x &lt; 0: <br>
+                            ...     x = 0 <br>
+                            ...     print('Negative changed to zero')<br>
+                            ... elif x == 0: <br>
+                            ...     print('Zero') <br>
+                            ... elif x == 1: <br>
+                            ...     print('Single') <br>
+                            ... else: <br>
+                            ...     print('More') <br>
+                            ... <br>
+                            More
+                        </code>
+                        <p>There can be zero or more elif parts, and the else part is optional. 
+                            The keyword 'elif' is short for 'else if', and is useful to avoid excessive indentation.</p>
+                        </div>
+                        <div>
+                            <h3><code>for</code> Statements</h3>
+                            <p>The for statement in Python differs a bit from what you may be used to in C or Pascal. Rather 
+                                than always iterating over an arithmetic progression of numbers (like in Pascal), or giving 
+                                the user the ability to define both the iteration step and halting condition (as C), Python's 
+                                for statement iterates over the items of any sequence (a list or a string), in the order that 
+                                they appear in the sequence. For example (no pun intended):</p>
+                            <code>
+                                >>> # Measure some strings: <br>
+                                ... words = ['cat', 'window', 'defenestrate'] <br> 
+                                >>> for w in words: <br>
+                                ...     print(w, len(w)) <br>
+                                ... <br>
+                                cat 3 <br>
+                                window 6 <br>
+                                defenestrate 12
+                            </code>
+                        </div>
+                        <div>
+                            <h3>The <code>range()</code> Function</h3>
+                            <p>If you do need to iterate over a sequence of numbers, the built-in function range() comes in handy. 
+                                It generates arithmetic progressions:</p>
+                            <code>
+                                >>> for i in range(5): <br>
+                                ...     print(i) <br>  
+                                ... <br>
+                                0 <br>  
+                                1 <br>  
+                                2 <br>  
+                                3 <br>  
+                                4 <br>  
+                            </code>
+                            <p>The given end point is never part of the generated sequence; range(10) generates 10 values, the legal 
+                                indices for items of a sequence of length 10.</p>
+                        </div>
+                        <div>
+                            <h3><code>pass</code> Statements</h3>
+                            <p>The <code>pass</code> statement does nothing. It can be used when a statement is required syntactically but the program 
+                                requires no action. For example:</p>
+                            <code>
+                                >>> while True: <br>
+                                ...     pass  # Busy-wait for keyboard interrupt (Ctrl+C) <br>
+                                ... 
+                            </code>
+                            <p>This is commonly used for creating minimal classes:</p>
+                            <code>
+                                >>> class MyEmptyClass: <br>
+                                ...     pass <br>
+                                ... 
+                            </code>
+                        </div>
+                        <div>
+                            <h3><code>match</code> Statements</h3>
+                            <p>A <code>match</code> statement takes an expression and compares its value to successive patterns given as one or more case 
+                                blocks. This is superficially similar to a switch statement in C, Java or JavaScript (and many other languages), 
+                                but it's more similar to pattern matching in languages like Rust or Haskell. Only the first pattern that matches 
+                                gets executed and it can also extract components (sequence elements or object attributes) from the value into variables.</p>
+                            <p>The simplest form compares a subject value against one or more literals:</p>
+                            <code>
+                                def http_error(status): <br>
+                                match status: <br>
+                                    case 400: <br>
+                                        return "Bad request" <br>
+                                    case 404: <br>
+                                        return "Not found" <br>
+                                    case 418: <br>
+                                        return "I'm a teapot" <br>
+                                    case _: <br>
+                                        return "Something's wrong with the internet" 
+                            </code>
+                            <p>Note the last block: the “variable name” _ acts as a wildcard and never fails to match. If no case matches, none of the branches 
+                                is executed.</p>
+                            <p>You can combine several literals in a single pattern using | (“or”):</p>
+                            <code>
+                                case 401 | 403 | 404: <br>
+                                    return "Not allowed"
+                            </code>
+                        </div>
+                    </article>
+                </section>
+                <section id="Data_Structures" class="main-section">
+                    <header>
+                        <h2>Data Structures</h2>
+                        <p>This chapter describes some things you've learned about already in more detail, and adds some new things as well.</p>
+                    </header>
+                    <article>
+                        <div>
+                            <h3>Lists</h3>
+                            <p>The list data type has some more methods. Here are all of the methods of list objects:</p>
+                            <ul>
+                                <li>
+                                    <code>list.<b>append</b>(x)</code>
+                                        <p>Add an item to the end of the list. Equivalent to <code>a[len(a):] = [x]</code>.</p>
+                                </li>
+                                <li>
+                                    <code>list.<b>extend</b>(iterable)</code>
+                                        <p>Extend the list by appending all the items from the iterable. Equivalent to <code>a[len(a):] = iterable</code>.</p>
+                                </li>
+                                <li>
+                                    <code>list.<b>insert</b>(i, x)</code>
+                                        <p>Insert an item at a given position. The first argument is the index of the element before which to insert, 
+                                            so <code>a.insert(0, x)</code> inserts at the front of the list, and <code>a.insert(len(a), x)</code> is equivalent to <code>a.append(x)</code>.</p>
+                                </li>
+                                <li>
+                                    <code>list.<b>remove</b>(x)</code>
+                                        <p>Remove the first item from the list whose value is equal to x. It raises a ValueError if there is no such item.</p>
+                                </li>
+                                <li>
+                                    <code>list.<b>pop</b>([i])</code>
+                                        <p>Remove the item at the given position in the list, and return it. If no index is specified, <code>a.pop()</code> removes and returns the last item in the list.</p>
+                                </li>
+                                <li>
+                                    <code>list.<b>clear</b>()</code>
+                                        <p>emove all items from the list. Equivalent to <code>del a[:]</code>.</p>
+                                </li>
+                                <li>
+                                    <code>list.<b>index</b>(x[, start[, end]])</code>
+                                        <p>Return zero-based index in the list of the first item whose value is equal to x. Raises a ValueError if there is no such item.</p>
+                                </li>
+                                <li>
+                                    <code>list.<b>count</b>(x)</code>
+                                        <p>Return the number of times x appears in the list.</p>
+                                </li>
+                                <li>
+                                    <code>list.<b>sort</b>(*, key=None, reverse=False)</code>
+                                        <p>Sort the items of the list in place.</p>
+                                </li>
+                                <li>
+                                    <code>list.<b>reverse</b>()</code>
+                                        <p>Reverse the elements of the list in place.</p>
+                                </li>
+                                <li>
+                                    <code>list.<b>copy</b>()</code>
+                                        <p>Return a shallow copy of the list. Equivalent to <code>a[:]</code>.</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p>An example that uses most of the list methods:</p>
+                            <code>>>> fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana'] <br>
+                                >>> fruits.count('apple') <br>
+                                2 <br>
+                                >>> fruits.count('tangerine') <br>
+                                0 <br>
+                                >>> fruits.index('banana') <br>
+                                3 <br>
+                                >>> fruits.index('banana', 4)  # Find next banana starting a position 4 <br>
+                                6 <br>
+                                >>> fruits.reverse() <br>
+                                >>> fruits <br>
+                                ['banana', 'apple', 'kiwi', 'banana', 'pear', 'apple', 'orange'] <br>
+                                >>> fruits.append('grape') <br>
+                                >>> fruits <br>
+                                ['banana', 'apple', 'kiwi', 'banana', 'pear', 'apple', 'orange', 'grape'] <br>
+                                >>> fruits.sort() <br>
+                                >>> fruits <br>
+                                ['apple', 'apple', 'banana', 'banana', 'grape', 'kiwi', 'orange', 'pear'] <br>
+                                >>> fruits.pop() <br>
+                                'pear'</code>
+                        </div>
+                    </article>            
+                </section>
+                <section id="Modules" class="main-section">
+                    <header>
+                        <h2>Modules</h2>
+                    </header>
+                    <article>
+                        <div>
+                            <p>If you quit from the Python interpreter and enter it again, the definitions you have made (functions and variables) are lost. Therefore, if you want to write a somewhat longer program, you are better off using a text editor to prepare the input for the interpreter and running it with that file as input instead. This is known as creating a script. As your program gets longer, you may want to split it into several files for easier maintenance. You may also want to use a handy function that you've written in several programs without copying its definition into each program.</p>
+                            <p>To support this, Python has a way to put definitions in a file and use them in a script or in an interactive instance of the interpreter. Such a file is called a module; definitions from a module can be imported into other modules or into the main module (the collection of variables that you have access to in a script executed at the top level and in calculator mode).</p>
+                            <p>A module is a file containing Python definitions and statements. The file name is the module name with the suffix .py appended. Within a module, the module’s name (as a string) is available as the value of the global variable __name__. For instance, use your favorite text editor to create a file called fibo.py in the current directory with the following contents:</p>
+                            <code>
+                                # Fibonacci numbers module <br>
+        
+                                def fib(n):    # write Fibonacci series up to n <br>
+                                    a, b = 0, 1 <br>
+                                    while a &lt; n: <br>
+                                        print(a, end=' ') <br>
+                                        a, b = b, a+b <br>
+                                    print() <br>
+        
+                                def fib2(n):   # return Fibonacci series up to n <br>
+                                    result = [] <br>
+                                    a, b = 0, 1 <br>
+                                    while a &lt; n: <br>
+                                        result.append(a) <br>
+                                        a, b = b, a+b <br>
+                                    return result
+                            </code>
+                            <p>Now enter the Python interpreter and import this module with the following command:</p>
+                            <code>>>> import fibo</code>
+                            <p>This does not add the names of the functions defined in fibo directly to the current namespace (see Python Scopes and Namespaces for more details); it only adds the module name fibo there. Using the module name you can access the functions:</p>
+                            <code>
+                                >>> fibo.fib(1000) <br>
+                                0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 <br>
+                                >>> fibo.fib2(100) <br>
+                                [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89] <br>
+                                >>> fibo.__name__ <br>
+                                'fibo'
+                            </code>
+                            <p>If you intend to use a function often you can assign it to a local name:</p>
+                            <code>
+                                >>> fib = fibo.fib <br>
+                                >>> fib(500) <br>
+                                0 1 1 2 3 5 8 13 21 34 55 89 144 233 377
+                            </code>
+                        </div>
+                    </article>
+                </section>
+                <section id="Input_and_Output" class="main-section">
+                    <header>
+                        <h2>Input and Output</h2>
+                        <p>There are several ways to present the output of a program; data can be printed in a human-readable form, or written to a file for future use. This chapter will discuss some of the possibilities.</p>
+                    </header>
+                    <article>
+                        <div>
+                            <h3>Fancier Output Formatting</h3>
+                            <p>So far we've encountered two ways of writing values: <i>expression statements</i> and the <code>print()</code> function.</p>
+                            <p>Often you'll want more control over the formatting of your output than simply printing space-separated values. There are several ways to format output.</p>
+                            <ul>
+                                <li>
+                                    <p>To use formatted string literals, begin a string with f or F before the opening quotation mark or triple quotation mark. Inside this string, you can write a Python expression between { and } characters that can refer to variables or literal values.</p>
+                                    <code>
+                                        >>> year = 2016 <br>
+                                        >>> event = 'Referendum' <br>
+                                        >>> f'Results of the {year} {event}' <br>
+                                        'Results of the 2016 Referendum'
+                                    </code>
+                                </li>
+                                <li>
+                                    <p>The <code>str.format()</code> method of strings requires more manual effort. You'll still use { and } to mark where a variable will be substituted and can provide detailed formatting directives, but you'll also need to provide the information to be formatted.</p>
+                                    <code>
+                                        >>> yes_votes = 42_572_654 <br>
+                                        >>> no_votes = 43_132_495 <br>
+                                        >>> percentage = yes_votes / (yes_votes + no_votes) <br>
+                                        >>> '{:-9} YES votes  {:2.2%}'.format(yes_votes, percentage) <br>
+                                        ' 42572654 YES votes  49.67%'
+                                    </code>
+                                </li>
+                                <li>
+                                    Finally, you can do all the string handling yourself by using string slicing and concatenation operations to create any layout you can imagine. The string type has some methods that perform useful operations for padding strings to a given column width.
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </section>
+                <section id="Errors_and_Exceptions" class="main-section">
+                    <header>
+                        <h2>Errors and Exceptions</h2>
+                        <p>Until now error messages haven't been more than mentioned, but if you have tried out the examples you have probably seen some. There are (at least) two distinguishable kinds of errors: <i>syntax errors</i> and <i>exceptions</i>.</p>
+                    </header>
+                    <article>
+                        <div>
+                            <h3>Syntax Errors</h3>
+                            <p>Syntax errors, also known as parsing errors, are perhaps the most common kind of complaint you get while you are still learning Python:</p>
+                            <code>
+                                >>> while True print('Hello world') <br>
+                                File "<stdin>", line 1 <br>
+                                    while True print('Hello world') <br>
+                                                ^ <br>
+                                SyntaxError: invalid syntax
+                            </code>
+                            <p>The parser repeats the offending line and displays a little 'arrow' pointing at the earliest point in the line where the error was detected. The error is caused by (or at least detected at) the token preceding the arrow: in the example, the error is detected at the function <code>print()</code>, since a colon (':') is missing before it. File name and line number are printed so you know where to look in case the input came from a script.</p>
+                        </div>
+                        <div>
+                            <h3>Exceptions</h3>
+                            <p>Even if a statement or expression is syntactically correct, it may cause an error when an attempt is made to execute it. Errors detected during execution are called <i>exceptions</i> and are not unconditionally fatal: you will soon learn how to handle them in Python programs. Most exceptions are not handled by programs, however, and result in error messages as shown here:</p>
+                            <code>
+                                >>> 10 * (1/0) <br>
+                                Traceback (most recent call last): <br>
+                                File "<stdin>", line 1, in <module> <br>
+                                ZeroDivisionError: division by zero <br>
+                                >>> 4 + spam*3 <br>
+                                Traceback (most recent call last): <br>
+                                File "<stdin>", line 1, in <module> <br>
+                                NameError: name 'spam' is not defined <br>
+                                >>> '2' + 2 <br>
+                                Traceback (most recent call last): <br>
+                                File "<stdin>", line 1, in <module> <br>
+                                TypeError: can only concatenate str (not "int") to str
+                            </code>
+                            <p>The last line of the error message indicates what happened. Exceptions come in different types, and the type is printed as part of the message: the types in the example are ZeroDivisionError, NameError and TypeError. The string printed as the exception type is the name of the built-in exception that occurred. This is true for all built-in exceptions, but need not be true for user-defined exceptions (although it is a useful convention). Standard exception names are built-in identifiers (not reserved keywords).</p>
+                            <p>The rest of the line provides detail based on the type of exception and what caused it.</p>
+                            <p>The preceding part of the error message shows the context where the exception occurred, in the form of a stack traceback. In general it contains a stack traceback listing source lines; however, it will not display lines read from standard input.</p>
+                        </div>
+                    </article>
+                </section>
+                <section id="Classes" class="main-section">
+                    <header>
+                        <h2>Classes</h2>
+                    </header>
+                    <article>
+                        <div>
+                            <p>
+                                Classes provide a means of bundling data and functionality together. Creating a new class creates a new type of object, allowing new instances of that type to be made. Each class instance can have attributes attached to it for maintaining its state. Class instances can also have methods (defined by its class) for modifying its state.
+                            </p>
+                        </div>
+                        <div>
+                            <h3>A First Look at Classes</h3>
+                            <p>Classes introduce a little bit of new syntax, three new object types, and some new semantics.</p>
+                            <h4>Class Definition Syntax</h4>
+                            <p>The simplest form of class definition looks like this:</p>
+                            <code>
+                                class ClassName: <br>
+                                &lt;statement-1&gt; <br>
+                                . <br>
+                                . <br>
+                                . <br>
+                                &lt;statement-N&gt;
+                            </code>
+                            <p>Class definitions, like function definitions (def statements) must be executed before they have any effect. (You could conceivably place a class definition in a branch of an if statement, or inside a function.)</p>
+                            <p>n practice, the statements inside a class definition will usually be function definitions, but other statements are allowed, and sometimes useful — we'll come back to this later. The function definitions inside a class normally have a peculiar form of argument list, dictated by the calling conventions for methods — again, this is explained later.</p>
+                            <p>When a class definition is entered, a new namespace is created, and used as the local scope — thus, all assignments to local variables go into this new namespace. In particular, function definitions bind the name of the new function here.</p>
+                        </div>
+                    </article>
+                </section>
+                <section id="Reference" class="main-section">
+                    <header>
+                        <h2>Reference</h2>
+                    </header>
+                    <article>
+                        <ul>
+                            <li>
+                                All the documentation in this page is taken from <a href="https://docs.python.org/3/" target="_blank">docs.python.org</a>
+                            </li>
+                        </ul>
+                    </article>
+                </section>
+            </div>
+        </div>
     </main>
 </body>
 </html>

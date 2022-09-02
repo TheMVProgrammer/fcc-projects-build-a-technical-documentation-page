@@ -1,9 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap');
+
+/*CSS reset*/
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
 * {
     margin: 0;
+    scroll-behavior: smooth;
+}
+
+html {
+    font-family: 'serif', sans-serif;
+}
+
+code {
+    font-family: 'Roboto Mono', monospace;
 }
 
 html, body {
@@ -13,6 +26,7 @@ html, body {
 body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    background-color: #f0f0f0;
 }
 
 img, picture, video, canvas, svg {
@@ -22,4 +36,72 @@ img, picture, video, canvas, svg {
 
 p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
+}
+
+/*CSS reset - end*/
+
+
+.flex-container {
+    display: flex;
+}
+
+p {
+    padding: .5rem;
+    margin: .5rem;
+}
+
+a {color:#000;}         /* Unvisited link  */
+a:visited {color:#000;} /* Visited link    */
+a:hover {color:#000;}   /* Mouse over link */
+a:active {color:#000;}  /* Selected link   */
+
+.sidebar {
+    position: fixed;
+    font-weight: 700;
+    font-size: 1.2rem;
+    background-color: #306998;
+    height: 100vh;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.sidebar h1 {
+    font-size: 1.3rem;
+    color: #f0f0f0;
+}
+
+#navbar ul {
+    padding: 1rem 0;
+}
+
+#navbar li {
+    list-style-type: none;
+    padding: .7rem 1rem;
+    margin: 1rem 0;
+    text-align: center; 
+    transition: transform .3s;
+}
+
+#navbar li:hover  {
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: #4b8bbe;
+    transform: scale(.98);
+}
+
+#navbar li:hover a {
+    color: #f0f0f0;
+}
+
+#navbar a {
+    text-decoration: none;
+    color: #ffd43B;
+    display: block;
+}
+
+.sections {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    margin-left: 18rem;
 }
