@@ -38,6 +38,11 @@ p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
 }
 
+h3, h4, h5, h6 {
+    margin: 1.5rem;
+    padding-left: 1.5rem;
+}
+
 /*CSS reset - end*/
 
 
@@ -71,6 +76,10 @@ a:active {color:#000;}  /* Selected link   */
     color: #f0f0f0;
 }
 
+.sidebar header {
+    margin-top: .8rem;
+}
+
 #navbar ul {
     padding: 1rem 0;
 }
@@ -102,6 +111,32 @@ a:active {color:#000;}  /* Selected link   */
 
 .sections {
     margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 3rem;
     margin-left: 18rem;
 }
+
+.main-section p {
+    margin: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: justify;
+}
+
+.main-section header {
+    padding-left: 1rem;
+    margin-top: 2rem;
+}
+
+.main-section ul {
+    margin-left: 3rem;
+}
+
+.code-block {
+    display: block;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    padding: 1.5rem;
+    background-color: #dadada;
+    color: #306998;
+}
+
