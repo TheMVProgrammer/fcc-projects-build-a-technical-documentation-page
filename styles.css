@@ -57,7 +57,7 @@ p {
 
 a {color:#000;}         /* Unvisited link  */
 a:visited {color:#000;} /* Visited link    */
-a:hover {color:#000;}   /* Mouse over link */
+a:hover {color:#000;}   /* Mouse hover link */
 a:active {color:#000;}  /* Selected link   */
 
 .sidebar {
@@ -145,3 +145,127 @@ a:active {color:#000;}  /* Selected link   */
     color: #306998;
 }
 
+.check-btn {
+    font-size: 20px;
+    color: #ffd43B;
+    background-color: #306998;
+    margin-right: 35px;
+    position: fixed;
+    right: 0;
+    bottom: 30px;
+    cursor: pointer;
+    padding: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.75);
+    display: none;
+}
+
+.check-btn i {
+    display: block;
+    text-align: center;
+}
+
+#check {
+    display: none;
+}
+
+.fa-angle-up, .fa-angle-down {
+    transition: transform ease .5s;
+}
+
+
+@media (max-width: 768px) {
+
+    html, body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    .sections {
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        font-size: 1.1rem;
+    }
+
+    .main-section {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .main-section ul {
+        margin-left: 0;
+    }
+    
+    .code-block {
+        word-break: break-all;
+    }
+
+    li {
+        padding: 1rem;
+    }
+
+    .sidebar h1 {
+        font-size: 1.5rem;
+    }
+    .check-btn {
+        display: block;
+        z-index: 1000;        
+    }
+    .sidebar {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top: 0;
+        left: -100%;
+        text-align: center;
+        font-size: 1.4rem;
+        transition: all .5s;
+        overflow: auto;
+    }
+    #navbar li:hover  {
+        cursor: default;
+        border-radius: 0;
+        background-color: transparent;
+        transform: scale(1);
+    }
+
+    #navbar li:hover a {
+        color: #ffd43B;
+    } 
+
+    #check:checked ~ .check-btn{
+        background: #ffd43B;
+        color: #306998;
+        transition: background .5s, color .5s;
+
+    }
+
+    #check:checked ~ .sidebar {
+        left: 0;
+    }
+
+    #check:checked ~ .check-btn > .fa-angle-up {
+        transform: translate(0, 13.8px);
+    }
+
+    #check:checked ~ .check-btn .fa-angle-down {
+        transform: translate(0, -13.8px);
+    }
+
+}
+
+@media (max-width: 480px) {
+    .check-btn {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
