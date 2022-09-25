@@ -60,18 +60,19 @@ a:visited {color:#000;} /* Visited link    */
 a:hover {color:#000;}   /* Mouse hover link */
 a:active {color:#000;}  /* Selected link   */
 
-.sidebar {
+#navbar {
     position: fixed;
-    font-weight: 700;
-    font-size: 1.2rem;
-    background-color: #306998;
-    height: 100vh;
     padding-top: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
+    background-color: #306998;
+    height: 100vh;
+    font-weight: 700;
+    font-size: 1.2rem;
+
 }
 
-.sidebar h1 {
+#navbar h1 {
     font-size: 1.3rem;
     color: #f0f0f0;
 }
@@ -123,6 +124,8 @@ a:active {color:#000;}  /* Selected link   */
 }
 
 .main-section header {
+    font-size: 1.5em;
+    font-weight: bold;
     padding-left: 1rem;
     margin-top: 2rem;
 }
@@ -216,7 +219,7 @@ a:active {color:#000;}  /* Selected link   */
         display: block;
         z-index: 1000;        
     }
-    .sidebar {
+    #navbar {
         position: fixed;
         width: 100%;
         height: 100vh;
@@ -245,7 +248,7 @@ a:active {color:#000;}  /* Selected link   */
 
     }
 
-    #check:checked ~ .sidebar {
+    #check:checked ~ #navbar {
         left: 0;
     }
 
